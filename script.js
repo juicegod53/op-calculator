@@ -73,6 +73,12 @@ let lastInputOperator = false
 let lastInput = ""
 
 function evaluate(e) {
+    if (lastInputOperator) {
+        if (e.target.innerText != "=") {
+            operator = e.target.innerText
+        }
+        return
+    }
     lastInputOperator = true
     if (num1 && lastInput != "=") {
         num2 = screen.innerText
