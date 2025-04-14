@@ -49,18 +49,17 @@ function clearScreen(e) {
 }
 
 function updateScreen(e) {
+    if (e.target.innerText == "CE") {
+        if (!lastInputOperator) {
+            screen.innerText = screen.innerText.substring(0,screen.innerText.length-1)
+        }
+        return
+    }
     if (lastInputOperator) {
         clearScreen(e)
     }
     if (lastInput == "=") {
         num1 = null
-    }
-    if (e.target.innerText == "CE") {
-        screen.innerText = screen.innerText.substring(0,screen.innerText.length-1)
-        if (lastInputOperator) {
-            num1 = null
-        }
-        return
     }
     if ((e.target.innerText == "." && screen.innerText.includes(".")) || (screen.innerText.length == 17)) {
         return
@@ -78,7 +77,7 @@ function evaluate(e) {
     if (num1 && lastInput != "=") {
         num2 = screen.innerText
         result = operate(operator, parseFloat(num1), parseFloat(num2))
-        screen.innerText = Math.round(result * (10**7)) / (10**7)
+        screen.innerText = Math.round(result * (10**6)) / (10**6)
     }
     num1 = screen.innerText
     lastInput = e.target.innerText
