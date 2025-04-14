@@ -40,28 +40,39 @@ for (i of buttons) {
     }
 }
 
+function clearScreen(e) {
+    screen.innerText = ""
+    lastInputOperator = false
+    if (e.target.innerText == "AC") {
+        num1 = null
+    }
+}
+
 function updateScreen(e) {
     if (lastInputOperator) {
-        clearScreen()
+        clearScreen(e)
+    }
+    if (lastInput == "=") {
+        num1 = null
     }
     screen.innerText += e.target.innerText
     lastInputOperator = false
 }
 
-function clearScreen() {
-    screen.innerText = ""
-    lastInputOperator = false
-}
-
-num1 = null
-lastInputOperator = false
+let num1 = null;
+let lastInputOperator = false
+let lastInput = ""
 
 function evaluate(e) {
     lastInputOperator = true
-    if (num1) {
+    if (num1 && lastInput != "=") {
         num2 = screen.innerText
         screen.innerText = operate(operator, parseFloat(num1), parseFloat(num2))
     }
     num1 = screen.innerText
-    operator = e.target.innerText
+    lastInput = e.target.innerText
+    if (lastInput != "=") {
+        operator = e.target.innerText
+    }
 }
+
