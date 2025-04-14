@@ -73,10 +73,8 @@ let lastInputOperator = false
 let lastInput = ""
 
 function evaluate(e) {
-    if (lastInputOperator) {
-        if (e.target.innerText != "=") {
-            operator = e.target.innerText
-        }
+    if (lastInputOperator && e.target.innerText != "=") {
+        operator = e.target.innerText
         return
     }
     lastInputOperator = true
