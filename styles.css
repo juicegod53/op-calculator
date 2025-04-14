@@ -3,6 +3,8 @@
     height: 40px;
     border: 2px solid black;
     font-size: 30px;
+    padding-right: 10px;
+    text-align: right;
 }
 
 button {
@@ -12,5 +14,10 @@ button {
 }
 
 #calculator {
-    width: 400px;
+    width: 300px;
+    border: 4px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }

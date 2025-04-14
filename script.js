@@ -55,6 +55,16 @@ function updateScreen(e) {
     if (lastInput == "=") {
         num1 = null
     }
+    if (e.target.innerText == "CE") {
+        screen.innerText = screen.innerText.substring(0,screen.innerText.length-1)
+        if (lastInputOperator) {
+            num1 = null
+        }
+        return
+    }
+    if ((e.target.innerText == "." && screen.innerText.includes(".")) || (screen.innerText.length == 17)) {
+        return
+    }
     screen.innerText += e.target.innerText
     lastInputOperator = false
 }
@@ -67,7 +77,8 @@ function evaluate(e) {
     lastInputOperator = true
     if (num1 && lastInput != "=") {
         num2 = screen.innerText
-        screen.innerText = operate(operator, parseFloat(num1), parseFloat(num2))
+        result = operate(operator, parseFloat(num1), parseFloat(num2))
+        screen.innerText = Math.round(result * (10**7)) / (10**7)
     }
     num1 = screen.innerText
     lastInput = e.target.innerText
